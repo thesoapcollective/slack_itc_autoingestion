@@ -11,23 +11,25 @@ class SlackItcAutoingestion::SlackController < ApplicationController
         SlackItcAutoingestion.configuration.itc_password,
         SlackItcAutoingestion.configuration.itc_vendor_id
       )
-      autoingestion.fetch_and_parse slack.report_params
 
       uri = URI.parse SlackItcAutoingestion.configuration.slack_webhook_url
       http = Net::HTTP.new uri.host, uri.port
       http.use_ssl = true
-
       request = Net::HTTP::Post.new uri.request_uri
+
       body = {
         username: 'Itunes Connect Autoingestion',
-        icon_url: view_context.image_url('slack_itc_autoingestion/itunesconnect_app_icon.png'),
-        attachments: [{
-          fallback: slack.fallback(autoingestion.report),
-          title: slack.title(autoingestion.report),
-          fields: slack.fields(autoingestion.report),
-          color: '#0594f9'
-        }]
+        icon_url: view_context.image_url('slack_itc_autoingestion/itunesconnect_app_icon.png')
       }
+
+      begin
+        slack.report = autoingestion.fetch_and_parse slack.report_params
+        body[:text] = slack.text
+        body[:attachments] = slack.attachments
+      rescue => e
+        body[:text] = e.message
+      end
+
       request.body = body.to_json
       response = http.request request
 
