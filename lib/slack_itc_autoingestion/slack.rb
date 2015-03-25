@@ -1,7 +1,7 @@
 module SlackItcAutoingestion
   class Slack
 
-    DATE_FORMAT = '%a, %b %-m, %Y'
+    DATE_FORMAT = '%a, %b %-d, %Y'
     ATTACTMENT_COLOR = '#0594f9'
 
     attr_accessor :report
