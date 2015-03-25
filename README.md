@@ -6,7 +6,7 @@ This gem will add a Slack incoming webhook endpoint for pulling iTunes Connect r
 
 You can deploy a functioning app right to heroku:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/thesoapcollective/slack_itc_autoingestion-app)
 
 Or for a DIY setup, add this line to your application's Gemfile:
 ```ruby
