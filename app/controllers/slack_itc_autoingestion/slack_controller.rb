@@ -33,7 +33,7 @@ class SlackItcAutoingestion::SlackController < ApplicationController
       request.body = body.to_json
       response = http.request request
 
-      render json: {}, status: :ok
+      render nothing: true, status: :ok
     else
       render json: {error: {message: slack.error_message}}, status: :bad_request
     end
