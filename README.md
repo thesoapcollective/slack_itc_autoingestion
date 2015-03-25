@@ -1,6 +1,6 @@
 # Slack iTunes Connect Autoingestion
 
-This gem will add a Slack outgoing webhook endpoint for pulling iTunes Connect report data and then posting it to your Slack channels.
+This gem will add a Slack incoming webhook endpoint for pulling iTunes Connect report data and then posting it back to your Slack channels.
 
 ## Installation
 
@@ -15,7 +15,12 @@ $ bundle install
 ```
 
 ## Configuration
-By default the config looks for options set in your environment variables. Override any the defaults in `config/initializers/slack_itc_autoingestion.rb`:
+You'll need to setup two integrations in your Slack:
+
+1. An [Incoming Webhook](https://slack.com/services/new/incoming-webhook). The Webhook URL will be used in your config below.
+2. A [Slash Command](https://slack.com/services/new/slash-commands). The Command and Token will be used in your config below. The URL should be the location of the app with the gem installed.
+
+By default, the config looks for options set in your environment variables. Override the defaults in `config/initializers/slack_itc_autoingestion.rb`:
 
 ```ruby
 SlackItcAutoingestion.configure do |config|
@@ -30,10 +35,12 @@ end
 
 ## Usage
 In any public Slack channel you can type:
-`/itc [report_date] [report_date] [date_type] [report_type]`
+`/itc [report_date] [date_type] [report_type]`
 
-`report_date` is date in the format `YYYYMMDD`. Defaults to yesterday.
+`report_date` is date in the format `YYYYMMDD`. Defaults to 24 hours ago.
+
 `date_type` is 'Daily' or 'Weekly'. Defaults to 'Daily'.
+
 `report_type` is 'Summary' or 'Opt-In'. Defaults to 'Summary'.
 
 ## Contributing
