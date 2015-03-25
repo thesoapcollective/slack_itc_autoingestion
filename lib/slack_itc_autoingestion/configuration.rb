@@ -9,11 +9,11 @@ module SlackItcAutoingestion
     attr_accessor :slack_command
 
     def initialize
-      @itc_username = nil
-      @itc_password = nil
-      @itc_vendor_id = nil
-      @slack_token = nil
-      @slack_webhook_url = nil
+      @itc_username = ENV['ITUNES_CONNECT_USERNAME']
+      @itc_password = ENV['ITUNES_CONNECT_PASSWORD']
+      @itc_vendor_id = ENV['ITUNES_CONNECT_VENDOR_ID']
+      @slack_token = ENV['SLACK_TOKEN']
+      @slack_webhook_url = ENV['SLACK_WEBHOOK_URL']
       @slack_command = '/itc'
     end
 
@@ -22,8 +22,11 @@ module SlackItcAutoingestion
   class << self
     attr_accessor :configuration
 
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
     def configure
-      self.configuration ||= Configuration.new
       yield configuration
     end
   end

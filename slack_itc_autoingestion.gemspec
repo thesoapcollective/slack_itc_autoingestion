@@ -7,16 +7,13 @@ Gem::Specification.new do |spec|
   spec.name          = 'slack_itc_autoingestion'
   spec.version       = SlackItcAutoingestion::VERSION
   spec.authors       = ['Ian Hirschfeld']
-  spec.email         = ['contact@ianhirschfeld']
-  spec.summary       = %q{Slack integration with iTunes Connect.}
-  spec.description   = %q{Post iTunes Connect report data to Slack.}
-  spec.homepage      = ''
-  # spec.homepage      = 'http://github.com/thesoapcollective/slack-itc-autoingestion'
+  spec.email         = ['ihirschfeld@thesoapcollective.com']
+  spec.summary       = %q{iTunes Connect autoingestion webhook for Slack.}
+  spec.description   = %q{Post iTunes Connect report data to your Slack channels.}
+  spec.homepage      = 'https://github.com/thesoapcollective/slack_itc_autoingestion'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'itunes_ingestion', '~> 0'
