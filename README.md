@@ -1,10 +1,14 @@
 # Slack iTunes Connect Autoingestion
 
-This gem will add a Slack incoming webhook endpoint for pulling iTunes Connect report data and then posting it back to your Slack channels.
+This gem will add a Slack incoming webhook endpoint for pulling iTunes Connect report data and posting it back to your Slack channel.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+You can deploy a functioning app right to heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Or for a DIY setup, add this line to your application's Gemfile:
 ```ruby
 gem 'slack_itc_autoingestion'
 ```
@@ -17,8 +21,8 @@ $ bundle install
 ## Configuration
 You'll need to setup two integrations in your Slack:
 
-1. An [Incoming Webhook](https://slack.com/services/new/incoming-webhook). The Webhook URL will be used in your config below.
-2. A [Slash Command](https://slack.com/services/new/slash-commands). The Command and Token will be used in your config below. The URL should be the location of the app with the gem installed.
+1. An [Incoming Webhook](https://slack.com/services/new/incoming-webhook). The Webhook URL field will be used in your config below.
+2. A [Slash Command](https://slack.com/services/new/slash-commands). The Command and Token fields will be used in your config below. The URL field should be something to the effect of https://example.com/slack_itc_autoingestion.
 
 By default, the config looks for options set in your environment variables. Override the defaults in `config/initializers/slack_itc_autoingestion.rb`:
 
